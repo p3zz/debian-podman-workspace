@@ -45,7 +45,7 @@ If you are an owner of a WebPanel (WP) or a TouchController (TC), and you need t
 5. Depending on your current needs, run the following command paying attention on what every option actually does:
 
 	```bash
-	podman run --name debian-container -w /data --userns=keep-id -u $(id -u):$(id -g) --group-add keep-groups -v $(pwd)/data:/data -p <HOST_PORT>:<CONTAINER_PORT> -e <MY_ENV>=<MY_ENV_VALUE> --device <HOST_DEVICE:<CONTAINER_DEVICE> docker.io/debian:latest
+	podman run -it --name debian-container -w /data --userns=keep-id -u $(id -u):$(id -g) --group-add keep-groups -v $(pwd)/data:/data -p <HOST_PORT>:<CONTAINER_PORT> -e <MY_ENV>=<MY_ENV_VALUE> --device <HOST_DEVICE>:<CONTAINER_DEVICE> docker.io/debian:latest /bin/bash
 	```
 
 	- `-w /data` is used to set the working directory of your container (the current directory once you access the container)
@@ -68,10 +68,5 @@ If you are an owner of a WebPanel (WP) or a TouchController (TC), and you need t
 		podman exec -it debian-container /bin/bash
 	
 	- use `--device <HOST_DEVICE:<CONTAINER_DEVICE>` if you need to access some type of device that is mapped to your host from your container. For instance, if you need to communicate with the serial interface `/dev/ttyUSB0` from inside the container, use `--device /dev/ttyUSB0:/dev/ttyUSB0`
-
-6. You can now access the container and start working on your base debian image:
-	```bash
-	podman exec -it debian-container /bin/bash
-	```
 
 <img src="assets/pixsys-logo.png" width="50%">
