@@ -6,9 +6,10 @@ Create your own Debian workspace with Podman
 </p>
 
 ## Objective 🔍
-The objective of this tutorial is setup a container with everything necessary to have a minimal work environment.
+The objective of this tutorial is setup a container with everything necessary to have a minimal workspace environment.
 
 ## Description 📖
+If you are an owner of a WebPanel (WP) or a TouchController (TC), and you need to create your own clean workspace to develop and deploy some type of application (without modifying the host), or to install new packages, this tutorial will guide you into creating a minimal debian environment with everything you need.
 
 ## Prerequisites 🛠️
 - A [WebPanel (WP)](https://www.pixsys.net/hmi-e-ipc/webpanel) or [TouchController (TC)](https://www.pixsys.net/dispositivi-logica-programmabile/hmi-codesys)
