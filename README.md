@@ -44,7 +44,7 @@ The objective of this tutorial is setup a container with everything necessary to
 5. Depending on your current needs, run the following command paying attention on what every option actually does:
 
 	```bash
-	podman run --name debian-container -w /data --userns=keep-id -u $(id -u):$(id -g) -v $(pwd)/data:/data -p <HOST_PORT>:<CONTAINER_PORT> -e <MY_ENV>=<MY_ENV_VALUE> --device <HOST_DEVICE:<CONTAINER_DEVICE> docker.io/debian:latest
+	podman run --name debian-container -w /data --userns=keep-id -u $(id -u):$(id -g) --group-add keep-groups -v $(pwd)/data:/data -p <HOST_PORT>:<CONTAINER_PORT> -e <MY_ENV>=<MY_ENV_VALUE> --device <HOST_DEVICE:<CONTAINER_DEVICE> docker.io/debian:latest
 	```
 
 	- `-w /data` is used to set the working directory of your container (the current directory once you access the container)
@@ -52,6 +52,8 @@ The objective of this tutorial is setup a container with everything necessary to
 	- `-v $(pwd)/data:/data` is used to map the `/data/user/debian-env/data` to the `/data` folder of your container, so that you can share file and have persistent storage for your container.
 
 	- `--userns=keep-id -u $(id -u):$(id -g)` is used to use the current host user (`user` in this case) as user of the container. This way, everything you will create inside the container will have `user` as owner
+
+	- `--group-add keep-groups` is used to preserve the groups of your current user. This can be useful if you need to access some device that need you to belong to a specific group, e.g. the group `dialout` if you need to communicate with serial devices
 
 	- use `-p <HOST_PORT>:<CONTAINER_PORT>` if you need to run some type of service (database, web-server) inside your container, and your host needs to access it. For instance, if you are running a web-server that uses port 3000 inside your container, and you want to have the service exposed on port 4000 of your host, use `-p 4000:3000`
 
