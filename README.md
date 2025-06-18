@@ -1,4 +1,4 @@
-Create your own Debian container with Podman
+Create your own Debian workspace with Podman
 ===========
 <p align="left">
 	<img src="assets/debian-logo.png" width="15%">
